@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iz5-fz-DpP">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game-->
+        <scene sceneID="Old-YY-9Zd">
+            <objects>
+                <viewController title="Game" id="Iz5-fz-DpP" customClass="GameViewController" customModule="PokemonGuesser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zzd-zj-KSH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-OJ-cCC">
+                                <rect key="frame" x="20" y="99" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="icZ-rS-yF7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-BI-gyK">
+                                <rect key="frame" x="20" y="159" width="353" height="150"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="XBj-7D-jED"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4V0-8p-5O3">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cyt-u5-LnQ" customClass="SuggestionCollectionViewCell" customModule="PokemonGuesser" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h3N-1j-Eba">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="353" height="49"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2IU-2l-gfl">
+                                <rect key="frame" x="76" y="317" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2F-6b-yhp">
+                                <rect key="frame" x="150" y="534" width="93" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Guess"/>
+                                <connections>
+                                    <action selector="guessButtonTapped:" destination="Iz5-fz-DpP" eventType="touchUpInside" id="geK-D2-amK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CLN-Yw-SdB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="BPJ-nR-gOr"/>
+                            <constraint firstItem="wYz-BI-gyK" firstAttribute="top" secondItem="rqP-OJ-cCC" secondAttribute="bottom" constant="20" id="DUc-Sf-f5K"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="bottom" secondItem="Q2F-6b-yhp" secondAttribute="bottom" constant="200" id="QZ3-me-xzC"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="wYz-BI-gyK" secondAttribute="trailing" constant="20" id="W0l-hg-Ob8"/>
+                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="top" secondItem="CLN-Yw-SdB" secondAttribute="top" constant="40" id="fxm-KN-VDO"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="Q2F-6b-yhp" secondAttribute="trailing" constant="150" id="huP-u8-Xcw"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="rqP-OJ-cCC" secondAttribute="trailing" constant="20" id="mOi-mG-7lU"/>
+                            <constraint firstItem="wYz-BI-gyK" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="ndu-SI-M6b"/>
+                            <constraint firstItem="Q2F-6b-yhp" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="150" id="xi1-5X-iYq"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="hMA-ji-QkT"/>
+                    <connections>
+                        <outlet property="collectionView" destination="wYz-BI-gyK" id="oFt-8D-ZUZ"/>
+                        <outlet property="guessButton" destination="Q2F-6b-yhp" id="tPY-wV-zzH"/>
+                        <outlet property="guessTextField" destination="rqP-OJ-cCC" id="iDk-8K-fG7"/>
+                        <outlet property="randPokemonImg" destination="2IU-2l-gfl" id="dBl-6I-S31"/>
+                        <segue destination="XpJ-ph-uwZ" kind="showDetail" identifier="showDescription" id="ws9-P7-bbL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vok-Ge-ciH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-358.01526717557249" y="703.52112676056345"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="bP1-Pb-sa0">
+            <objects>
+                <viewController title="Favorites" id="s7I-hq-ODy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="czv-G7-jOc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GJj-28-Pxe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="gKe-7k-Z4h"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0y-Xk-gdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498" y="704"/>
+        </scene>
+        <!--Description View Controller-->
+        <scene sceneID="f7w-VJ-e1Q">
+            <objects>
+                <viewController id="XpJ-ph-uwZ" customClass="DescriptionViewController" customModule="PokemonGuesser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2N9-Jv-7oA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzV-Y0-f1L">
+                                <rect key="frame" x="148" y="98" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ndj-BM-pTk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="T0i-IY-NZX"/>
+                    <connections>
+                        <outlet property="pokeNameText" destination="kzV-Y0-f1L" id="px3-W3-eGp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivg-RH-iig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-358" y="1494"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="4uA-zw-9lU">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="tX7-j5-MLd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KQB-VA-vjX">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Iz5-fz-DpP" kind="relationship" relationship="viewControllers" id="w8M-5g-CCy"/>
+                        <segue destination="s7I-hq-ODy" kind="relationship" relationship="viewControllers" id="dEY-nr-amt"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZI-Q9-IBC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113.74045801526717" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
