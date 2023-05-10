@@ -16,6 +16,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
     
     var pokemonName: String!
     var suggestions: [String] = []
+    var pokemon: Pokemon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,45 +55,46 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         
         // Calls FetchRandomPokemon and loads in a random Pokemon Image
         fetchRandomPokemon { result in
-            switch result {
-                case .success(let pokemonData):
-                    if let spriteURLString = pokemonData.sprites.frontDefault, let spriteURL = URL(string: spriteURLString) {
-                        // Load the image from the sprite URL
-                        URLSession.shared.dataTask(with: spriteURL) { data, response, error in
-                            if let data = data, let image = UIImage(data: data) {
-                                // Set the image in randPokeImg
-                                DispatchQueue.main.async {
-                                    self.randPokemonImg.image = image
-                                }
-                            }
-                        }.resume()
-                    } else {
-                        print("Error: no sprite URL found")
+                switch result {
+                case .success(let pokemon):
+                    self.pokemon = pokemon
+                    if let url = URL(string: pokemon.sprites.front_default!) {
+                        self.downloadImage(from: url)
                     }
-                    case .failure(let error):
-                        print("Error fetching random Pokemon: \(error)")
-                    }
+                case .failure(let error):
+                    print("Error fetching random Pokemon: \(error)")
                 }
+            }
+        
     }
+    
+    
+    func downloadImage(from url: URL) {
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { [weak self] in
+                self?.randPokemonImg.image = UIImage(data: data)
+            }
+        }
+    }
+
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
     
     @IBAction func guessButtonTapped(_ sender: UIButton) {
         guard let guess = guessTextField.text else { return }
 
-        if guess.lowercased() == pokemonName?.lowercased() {
-            // Generate a new Pokémon
+            if guess.lowercased() == pokemon?.name.lowercased() {
+                // Generate a new Pokémon
                 fetchRandomPokemon { result in
                     switch result {
-                    case .success(let pokemonData):
-                        // Update pokemonName and randPokemonImg with the new data
-                        self.pokemonName = pokemonData.name
-                        if let spriteURLString = pokemonData.sprites.frontDefault, let spriteURL = URL(string: spriteURLString) {
-                            URLSession.shared.dataTask(with: spriteURL) { data, response, error in
-                                if let data = data, let image = UIImage(data: data) {
-                                    DispatchQueue.main.async {
-                                        self.randPokemonImg.image = image
-                                    }
-                                }
-                            }.resume()
+                    case .success(let pokemon):
+                        // Update pokemon and randPokemonImg with the new data
+                        self.pokemon = pokemon
+                        if let spriteURLString = pokemon.sprites.front_default, let spriteURL = URL(string: spriteURLString) {
+                            self.downloadImage(from: spriteURL)
                         } else {
                             print("Error: no sprite URL found")
                         }
@@ -110,13 +112,13 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDescription" {
             let destinationVC = segue.destination as! DescriptionViewController
-            destinationVC.pokemonName = pokemonName
+            destinationVC.pokemon = pokemon
         }
     }
     
     
     // Function for getting a random pokemon
-    func fetchRandomPokemon(completion: @escaping (Result<PokemonData, Error>) -> Void) {
+    func fetchRandomPokemon(completion: @escaping (Result<Pokemon, Error>) -> Void) {
         let baseURL = "https://pokeapi.co/api/v2/pokemon/"
         let randomID = Int.random(in: 1...150)
         let pokemonURL = URL(string: baseURL + "\(randomID)")!
@@ -129,24 +131,27 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
             }
 
             do {
-                let pokemonJson = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                guard let name = pokemonJson?["name"] as? String,
-                    let sprites = pokemonJson?["sprites"] as? [String: Any],
-                    let frontDefault = sprites["front_default"] as? String else {
-                        print("Error: Pokemon sprite URL or name not found")
-                        completion(.failure(NSError(domain: "com.example.pokedex", code: 1, userInfo: nil)))
-                        return
+                let pokemon = try JSONDecoder().decode(Pokemon.self, from: data)
+                self.pokemon = pokemon
+                DispatchQueue.main.async {
+                    if let spriteURLString = pokemon.sprites.front_default, let spriteURL = URL(string: spriteURLString) {
+                        URLSession.shared.dataTask(with: spriteURL) { data, response, error in
+                            if let data = data, let image = UIImage(data: data) {
+                                self.randPokemonImg.image = image
+                            }
+                        }.resume()
+                    } else {
+                        print("Error: no sprite URL found")
                     }
-
-                    let pokemonData = PokemonData(name: name, sprites: Sprites(frontDefault: frontDefault))
-                    self.pokemonName = pokemonData.name
-                    completion(.success(pokemonData))
-                } catch {
-                    print("Error: \(error)")
-                    completion(.failure(error))
                 }
-            }.resume()
-        }
+                completion(.success(pokemon))
+            } catch {
+                print("Error: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
