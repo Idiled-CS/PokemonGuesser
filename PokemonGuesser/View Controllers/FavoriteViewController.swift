@@ -42,8 +42,6 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate, UIColl
            }
        }
     
-       // MARK: - UICollectionViewDataSource
-       
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
            return favoritedPokemon.count
        }
@@ -63,9 +61,22 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate, UIColl
            
            return cell
        }
-       
-       // MARK: - Fetch image
-       
+
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            performSegue(withIdentifier: "showDescription", sender: indexPath)
+        }
+
+
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "showDescription",
+               let destinationVC = segue.destination as? DescriptionViewController,
+               let indexPath = sender as? IndexPath {
+                let pokemonEntity = favoritedPokemon[indexPath.row]
+                destinationVC.pokemonEntity = pokemonEntity
+            }
+        }
+    
+
        func fetchImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
            URLSession.shared.dataTask(with: url) { data, response, error in
                guard let data = data, let image = UIImage(data: data) else {

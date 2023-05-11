@@ -39,14 +39,39 @@ class DescriptionViewController: UIViewController {
     @IBOutlet weak var pokemonDescriptionLabel: UILabel!
     
     var pokemon: Pokemon?
-
-        override func viewDidLoad() {
+    var pokemonEntity: PokemonEntity?
+    
+    override func viewDidLoad() {
             super.viewDidLoad()
             
             updateFavoriteButton()
             
-            guard let pokemon = pokemon else { return }
+            if let pokemonEntity = pokemonEntity {
+                setupViewWithPokemonEntity(pokemonEntity)
+            } else if let pokemon = pokemon {
+                setupViewWithPokemon(pokemon)
+            }
+        }
+        
+        func setupViewWithPokemonEntity(_ pokemonEntity: PokemonEntity) {
+            pokeNameText.text = pokemonEntity.name?.capitalized
+            pokemonTypeLabel.text = pokemonEntity.types?.components(separatedBy: ",").first?.capitalized ?? "Unknown"
             
+            if let urlString = pokemonEntity.front_default, let url = URL(string: urlString) {
+                fetchImage(from: url) { [weak self] image in
+                    self?.pokemonImageView.image = image
+                }
+            }
+            
+            if let speciesURLString = pokemonEntity.speciesUrl, let speciesURL = URL(string: speciesURLString) {
+                fetchSpeciesData(from: speciesURL) { [weak self] species in
+                    let englishFlavorText = species?.flavorTextEntries.first(where: { $0.language.name == "en" })?.flavorText
+                    self?.pokemonDescriptionLabel.text = englishFlavorText
+                }
+            }
+        }
+
+        func setupViewWithPokemon(_ pokemon: Pokemon) {
             pokeNameText.text = pokemon.name.capitalized
             pokemonTypeLabel.text = pokemon.types.first?.type.name.capitalized ?? "Unknown"
             
@@ -144,7 +169,7 @@ class DescriptionViewController: UIViewController {
             return false
         }
 
-    
+    // Saving to CoreData right now
         func savePokemonToCoreData(pokemon: Pokemon) {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let context = appDelegate.persistentContainer.viewContext
