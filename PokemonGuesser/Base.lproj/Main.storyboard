@@ -136,16 +136,16 @@
                                                     <rect key="frame" x="15" y="49" width="98" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-qW-afd">
-                                                    <rect key="frame" x="2" y="20" width="124" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-qW-afd">
+                                                    <rect key="frame" x="5" y="0.0" width="41.333333333333336" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="WCP-qW-afd" secondAttribute="trailing" constant="2" id="d4F-aN-Ufk"/>
-                                                <constraint firstItem="WCP-qW-afd" firstAttribute="leading" secondItem="SzY-Bg-sOm" secondAttribute="leading" constant="2" id="zlM-J5-mwv"/>
+                                                <constraint firstItem="WCP-qW-afd" firstAttribute="leading" secondItem="SzY-Bg-sOm" secondAttribute="leading" constant="5" id="GlL-Op-9Ir"/>
+                                                <constraint firstItem="WCP-qW-afd" firstAttribute="top" secondItem="SzY-Bg-sOm" secondAttribute="top" id="ZuN-ox-vFO"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
@@ -168,7 +168,7 @@
                     <tabBarItem key="tabBarItem" title="Favorite" id="gKe-7k-Z4h"/>
                     <connections>
                         <outlet property="collectionView" destination="xcx-mp-zWu" id="Z7Q-qQ-LzM"/>
-                        <segue destination="XpJ-ph-uwZ" kind="showDetail" identifier="showDescription" id="ISM-r1-LCW"/>
+                        <segue destination="XpJ-ph-uwZ" kind="showDetail" identifier="showFavoriteDescription" id="ISM-r1-LCW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0y-Xk-gdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -250,7 +250,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ISM-r1-LCW"/>
+        <segue reference="ws9-P7-bbL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

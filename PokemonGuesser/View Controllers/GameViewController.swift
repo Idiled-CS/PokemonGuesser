@@ -211,3 +211,11 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         return CGSize(width: collectionView.bounds.width, height: 44)
     }
 }
+
+extension GameViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
