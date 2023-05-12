@@ -35,20 +35,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-OJ-cCC">
-                                <rect key="frame" x="20" y="99" width="353" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqy-7a-TrP">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="140"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="icZ-rS-yF7"/>
+                                    <constraint firstAttribute="height" constant="140" id="JVh-lC-7Z2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-BI-gyK">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-BI-gyK">
                                 <rect key="frame" x="20" y="159" width="353" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="XBj-7D-jED"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4V0-8p-5O3">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -79,19 +79,30 @@
                                     <action selector="guessButtonTapped:" destination="Iz5-fz-DpP" eventType="touchUpInside" id="geK-D2-amK"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-OJ-cCC">
+                                <rect key="frame" x="20" y="79" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QzB-bd-zXb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CLN-Yw-SdB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="BPJ-nR-gOr"/>
-                            <constraint firstItem="wYz-BI-gyK" firstAttribute="top" secondItem="rqP-OJ-cCC" secondAttribute="bottom" constant="20" id="DUc-Sf-f5K"/>
+                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="0MI-GG-aqx"/>
+                            <constraint firstItem="sqy-7a-TrP" firstAttribute="leading" secondItem="zzd-zj-KSH" secondAttribute="leading" id="Giv-R8-UMh"/>
+                            <constraint firstItem="wYz-BI-gyK" firstAttribute="top" secondItem="sqy-7a-TrP" secondAttribute="bottom" id="KIf-6X-oX0"/>
+                            <constraint firstAttribute="trailing" secondItem="sqy-7a-TrP" secondAttribute="trailing" id="LyU-nl-4ex"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="bottom" secondItem="Q2F-6b-yhp" secondAttribute="bottom" constant="200" id="QZ3-me-xzC"/>
-                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="wYz-BI-gyK" secondAttribute="trailing" constant="20" id="W0l-hg-Ob8"/>
-                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="top" secondItem="CLN-Yw-SdB" secondAttribute="top" constant="40" id="fxm-KN-VDO"/>
+                            <constraint firstItem="sqy-7a-TrP" firstAttribute="top" secondItem="zzd-zj-KSH" secondAttribute="top" id="W6z-Tb-Phr"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="wYz-BI-gyK" secondAttribute="trailing" constant="20" id="YSw-xn-6ug"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="Q2F-6b-yhp" secondAttribute="trailing" constant="150" id="huP-u8-Xcw"/>
-                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="rqP-OJ-cCC" secondAttribute="trailing" constant="20" id="mOi-mG-7lU"/>
-                            <constraint firstItem="wYz-BI-gyK" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="ndu-SI-M6b"/>
+                            <constraint firstItem="wYz-BI-gyK" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="n10-ZX-nEW"/>
+                            <constraint firstItem="rqP-OJ-cCC" firstAttribute="top" secondItem="CLN-Yw-SdB" secondAttribute="top" constant="20" id="xej-mW-We7"/>
                             <constraint firstItem="Q2F-6b-yhp" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="150" id="xi1-5X-iYq"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="rqP-OJ-cCC" secondAttribute="trailing" constant="20" id="zcA-V7-YSV"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Game" id="hMA-ji-QkT"/>
@@ -255,6 +266,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
