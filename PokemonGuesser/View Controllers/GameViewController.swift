@@ -14,6 +14,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
     @IBOutlet weak var guessTextField: UITextField!
     @IBOutlet weak var randPokemonImg: UIImageView!
     @IBOutlet weak var guessButton: UIButton!
+    @IBOutlet weak var pokeballImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pokemonName: String!
@@ -53,8 +54,21 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
                 }
             }
         
+        startSpinningPokeball()
     }
     
+    
+    // Animation for spinning
+    func startSpinningPokeball() {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+            self.pokeballImageView.transform = self.pokeballImageView.transform.rotated(by: CGFloat.pi)
+        }) { (finished) in
+            if finished {
+                self.startSpinningPokeball()
+            }
+        }
+    }
+
     
     func downloadImage(from url: URL) {
         getData(from: url) { data, response, error in
@@ -71,30 +85,34 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
 
     
     @IBAction func guessButtonTapped(_ sender: UIButton) {
-        guard let guess = guessTextField.text else { return }
-
-            if guess.lowercased() == pokemon?.name.lowercased() {
-                // Generate a new Pokémon
-                fetchRandomPokemon { result in
-                    switch result {
-                    case .success(let pokemon):
-                        // Update pokemon and randPokemonImg with the new data
-                        self.pokemon = pokemon
-                        if let spriteURLString = pokemon.sprites.front_default, let spriteURL = URL(string: spriteURLString) {
-                            self.downloadImage(from: spriteURL)
-                        } else {
-                            print("Error: no sprite URL found")
-                        }
-                    case .failure(let error):
-                        print("Error fetching random Pokemon: \(error)")
-                    }
-                }
-            } else {
-                // Perform segue to DescriptionViewController
-                performSegue(withIdentifier: "showDescription", sender: self)
-            }
+        processGuess()
     }
     
+    func processGuess() {
+        guard let guess = guessTextField.text else { return }
+
+        if guess.lowercased() == pokemon?.name.lowercased() {
+            fetchRandomPokemonAndUpdateUI()
+        } else {
+            performSegue(withIdentifier: "showDescription", sender: self)
+        }
+    }
+    
+    func fetchRandomPokemonAndUpdateUI() {
+        fetchRandomPokemon { result in
+            switch result {
+            case .success(let pokemon):
+                self.pokemon = pokemon
+                if let spriteURLString = pokemon.sprites.front_default, let spriteURL = URL(string: spriteURLString) {
+                    self.downloadImage(from: spriteURL)
+                } else {
+                    print("Error: no sprite URL found")
+                }
+            case .failure(let error):
+                print("Error fetching random Pokemon: \(error)")
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDescription" {
@@ -202,6 +220,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
 
 extension GameViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        processGuess()
         textField.resignFirstResponder()
         return true
     }

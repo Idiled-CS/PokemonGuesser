@@ -36,9 +36,9 @@ class DescriptionViewController: UIViewController {
     
     // MARK: Outlet Connections
     @IBOutlet weak var pokemonTypeLabel: UILabel!
-    @IBOutlet weak var pokeNameText: UITextField!
+    @IBOutlet weak var pokeNameText: UILabel!
     @IBOutlet weak var pokemonImageView: UIImageView!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIImageView!
     @IBOutlet weak var pokemonDescriptionLabel: UILabel!
     
     // MARK: Variables
@@ -50,7 +50,12 @@ class DescriptionViewController: UIViewController {
         super.viewDidLoad()
                
         updateFavoriteButton()
-
+        
+        // Add tap gesture recognizer to favoriteButton
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
+        favoriteButton.isUserInteractionEnabled = true
+        favoriteButton.addGestureRecognizer(tapGestureRecognizer)
+        
         if let pokemonEntity = pokemonEntity {
             setupViewWithPokemonEntity(pokemonEntity)
         } else if let pokemon = pokemon {
@@ -128,7 +133,7 @@ class DescriptionViewController: UIViewController {
     }
     
     // MARK: Favorite actions
-    @IBAction func favoriteButtonTapped(_ sender: Any) {
+    @objc func favoriteButtonTapped(_ sender: UITapGestureRecognizer) {
         if let pokemon = self.pokemon {
                if isFavorited(pokemon: pokemon) {
                    removePokemonFromFavorites()
@@ -231,20 +236,13 @@ class DescriptionViewController: UIViewController {
     // MARK: Updates Favorite Button
     func updateFavoriteButton() {
         if let pokemon = self.pokemon {
-            if isFavorited(pokemon: pokemon) {
-                favoriteButton.tintColor = .yellow
-            } else {
-                favoriteButton.tintColor = .gray
-                }
-            } else if let pokemonEntity = self.pokemonEntity {
-                if isFavorited(pokemonEntity: pokemonEntity) {
-                favoriteButton.tintColor = .yellow
-        } else {
-            favoriteButton.tintColor = .gray
-            }
+            favoriteButton.image = isFavorited(pokemon: pokemon) ? UIImage(named: "redPokeBall") : UIImage(named: "bluePokeBall")
+        } else if let pokemonEntity = self.pokemonEntity {
+            favoriteButton.image = isFavorited(pokemonEntity: pokemonEntity) ? UIImage(named: "redPokeBall") : UIImage(named: "bluePokeBall")
         }
     }
 
+    
     // MARK: Saving to Core Data
     func savePokemonToCoreData(pokemon: Pokemon) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		876910062A0F0B9A006F5496 /* SuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876910052A0F0B9A006F5496 /* SuggestionCollectionViewCell.swift */; };
+		8769100D2A0F1A8B006F5496 /* redPokeBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8769100C2A0F1A8B006F5496 /* redPokeBall.png */; };
+		8769100F2A0F23C4006F5496 /* bluePokeBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8769100E2A0F23C4006F5496 /* bluePokeBall.png */; };
+		876910112A0F299B006F5496 /* emptyPokeBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 876910102A0F299B006F5496 /* emptyPokeBall.png */; };
 		8796F7002A02FFC4006B2386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8796F6FF2A02FFC4006B2386 /* AppDelegate.swift */; };
 		8796F7022A02FFC4006B2386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8796F7012A02FFC4006B2386 /* SceneDelegate.swift */; };
 		8796F7072A02FFC4006B2386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8796F7052A02FFC4006B2386 /* Main.storyboard */; };
@@ -46,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		876910052A0F0B9A006F5496 /* SuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
+		8769100C2A0F1A8B006F5496 /* redPokeBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redPokeBall.png; path = ../../../../../Downloads/redPokeBall.png; sourceTree = "<group>"; };
+		8769100E2A0F23C4006F5496 /* bluePokeBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluePokeBall.png; path = ../../../../../Downloads/bluePokeBall.png; sourceTree = "<group>"; };
+		876910102A0F299B006F5496 /* emptyPokeBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emptyPokeBall.png; path = ../../../../../Downloads/emptyPokeBall.png; sourceTree = "<group>"; };
 		8796F6FC2A02FFC4006B2386 /* PokemonGuesser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGuesser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8796F6FF2A02FFC4006B2386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8796F7012A02FFC4006B2386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +100,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		876910072A0F185C006F5496 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				876910082A0F1870006F5496 /* Pokeball */,
+			);
+			path = Pictures;
+			sourceTree = "<group>";
+		};
+		876910082A0F1870006F5496 /* Pokeball */ = {
+			isa = PBXGroup;
+			children = (
+				876910102A0F299B006F5496 /* emptyPokeBall.png */,
+				8769100E2A0F23C4006F5496 /* bluePokeBall.png */,
+				8769100C2A0F1A8B006F5496 /* redPokeBall.png */,
+			);
+			path = Pokeball;
+			sourceTree = "<group>";
+		};
 		8796F6F32A02FFC4006B2386 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +141,7 @@
 		8796F6FE2A02FFC4006B2386 /* PokemonGuesser */ = {
 			isa = PBXGroup;
 			children = (
+				876910072A0F185C006F5496 /* Pictures */,
 				8796F7442A031DBF006B2386 /* Custom Files */,
 				8796F7412A031699006B2386 /* Data */,
 				8796F73C2A030CD3006B2386 /* View Controllers */,
@@ -282,9 +307,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8769100F2A0F23C4006F5496 /* bluePokeBall.png in Resources */,
 				8796F70F2A02FFC5006B2386 /* LaunchScreen.storyboard in Resources */,
+				876910112A0F299B006F5496 /* emptyPokeBall.png in Resources */,
 				8796F70C2A02FFC5006B2386 /* Assets.xcassets in Resources */,
 				8796F7072A02FFC4006B2386 /* Main.storyboard in Resources */,
+				8769100D2A0F1A8B006F5496 /* redPokeBall.png in Resources */,
 				8796F7432A0316C5006B2386 /* pokemon_names.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
