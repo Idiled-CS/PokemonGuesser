@@ -29,7 +29,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        //Adding scroll wheel to suggestions
+        // Adding scroll wheel to suggestions
         collectionView.isScrollEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
