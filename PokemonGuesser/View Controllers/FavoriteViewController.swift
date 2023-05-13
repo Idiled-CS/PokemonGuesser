@@ -68,7 +68,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
 
         let pokemonEntity = favoritedPokemon[indexPath.item]
-        cell.pokemonNameLabel.text = pokemonEntity.name
+        cell.pokemonNameLabel.text = pokemonEntity.name?.uppercased()
         cell.configureCell(pokemonEntity: pokemonEntity) { [weak self] pokemonEntity in
             self?.performSegue(withIdentifier: "showFavoriteDescription", sender: pokemonEntity)
         }

@@ -177,7 +177,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xcx-mp-zWu">
-                                <rect key="frame" x="20" y="199" width="353" height="550"/>
+                                <rect key="frame" x="40" y="199" width="313" height="550"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r0B-Qs-b7f">
                                     <size key="itemSize" width="128" height="128"/>
@@ -193,22 +193,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0Q-ld-5a2">
-                                                    <rect key="frame" x="15" y="49" width="98" height="71"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0Q-ld-5a2">
+                                                    <rect key="frame" x="0.0" y="33" width="128" height="95"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-qW-afd">
-                                                    <rect key="frame" x="5" y="0.0" width="41.333333333333336" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-qW-afd">
+                                                    <rect key="frame" x="5" y="10" width="118" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="WCP-qW-afd" firstAttribute="leading" secondItem="SzY-Bg-sOm" secondAttribute="leading" constant="5" id="GlL-Op-9Ir"/>
-                                                <constraint firstItem="WCP-qW-afd" firstAttribute="top" secondItem="SzY-Bg-sOm" secondAttribute="top" id="ZuN-ox-vFO"/>
+                                                <constraint firstItem="WCP-qW-afd" firstAttribute="top" secondItem="SzY-Bg-sOm" secondAttribute="top" constant="10" id="1Am-hh-fpR"/>
+                                                <constraint firstAttribute="trailing" secondItem="V0Q-ld-5a2" secondAttribute="trailing" id="DFh-3a-MsN"/>
+                                                <constraint firstItem="WCP-qW-afd" firstAttribute="leading" secondItem="SzY-Bg-sOm" secondAttribute="leading" constant="5" id="HUp-Ly-vhO"/>
+                                                <constraint firstAttribute="bottom" secondItem="V0Q-ld-5a2" secondAttribute="bottom" id="KmM-ui-dGx"/>
+                                                <constraint firstItem="V0Q-ld-5a2" firstAttribute="leading" secondItem="SzY-Bg-sOm" secondAttribute="leading" id="akV-81-9qF"/>
+                                                <constraint firstAttribute="trailing" secondItem="WCP-qW-afd" secondAttribute="trailing" constant="5" id="sAH-Xh-tyc"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <rect key="contentStretch" x="0.10000000000000001" y="0.0" width="1" height="1"/>
                                         <connections>
                                             <outlet property="pokemonImageView" destination="V0Q-ld-5a2" id="VqB-hE-lv7"/>
                                             <outlet property="pokemonNameLabel" destination="WCP-qW-afd" id="MgP-5w-mvt"/>
@@ -220,13 +227,13 @@
                         <viewLayoutGuide key="safeArea" id="GJj-28-Pxe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xcx-mp-zWu" firstAttribute="leading" secondItem="GJj-28-Pxe" secondAttribute="leading" constant="40" id="2zi-Ys-P2Z"/>
+                            <constraint firstItem="GJj-28-Pxe" firstAttribute="trailing" secondItem="xcx-mp-zWu" secondAttribute="trailing" constant="40" id="7iZ-rW-lZB"/>
                             <constraint firstItem="RhQ-Xj-tar" firstAttribute="leading" secondItem="czv-G7-jOc" secondAttribute="leading" id="9ht-6p-QtO"/>
-                            <constraint firstItem="GJj-28-Pxe" firstAttribute="trailing" secondItem="xcx-mp-zWu" secondAttribute="trailing" constant="20" id="EST-UC-Bnf"/>
                             <constraint firstAttribute="trailing" secondItem="RhQ-Xj-tar" secondAttribute="trailing" id="JWN-BK-f6l"/>
-                            <constraint firstItem="xcx-mp-zWu" firstAttribute="top" secondItem="GJj-28-Pxe" secondAttribute="top" constant="140" id="UQv-FK-pKd"/>
-                            <constraint firstItem="GJj-28-Pxe" firstAttribute="bottom" secondItem="xcx-mp-zWu" secondAttribute="bottom" constant="20" id="blH-Jj-ZbY"/>
-                            <constraint firstItem="xcx-mp-zWu" firstAttribute="leading" secondItem="GJj-28-Pxe" secondAttribute="leading" constant="20" id="maq-y3-asl"/>
+                            <constraint firstItem="xcx-mp-zWu" firstAttribute="top" secondItem="RhQ-Xj-tar" secondAttribute="bottom" constant="59" id="p1D-1V-ob0"/>
                             <constraint firstItem="RhQ-Xj-tar" firstAttribute="top" secondItem="czv-G7-jOc" secondAttribute="top" id="tVl-T1-1TM"/>
+                            <constraint firstItem="GJj-28-Pxe" firstAttribute="bottom" secondItem="xcx-mp-zWu" secondAttribute="bottom" constant="20" id="vtj-4o-6eo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorite" id="gKe-7k-Z4h"/>
@@ -321,10 +328,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ws9-P7-bbL"/>
+        <segue reference="ISM-r1-LCW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="redPokeBall.png" width="3633" height="3633"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
