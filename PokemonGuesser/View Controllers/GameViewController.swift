@@ -9,6 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    
+    // MARK: - Outlets
     @IBOutlet weak var guessTextField: UITextField!
     @IBOutlet weak var randPokemonImg: UIImageView!
     @IBOutlet weak var guessButton: UIButton!
@@ -25,7 +27,6 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         guessTextField.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(SuggestionCollectionViewCell.self, forCellWithReuseIdentifier: "suggestionCell")
 
         //Adding scroll wheel to suggestions
         collectionView.isScrollEnabled = true
@@ -34,24 +35,10 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
             collectionView.heightAnchor.constraint(equalToConstant: 200 * 3) // Limit the height to show 3 suggestions at once
         ])
         
-        // Suggestion box layout
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: collectionView.bounds.width, height: 40) // Set the height of each suggestion box
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        layout.minimumLineSpacing = 0 // Remove line spacing
-        layout.minimumInteritemSpacing = 0 // Remove item spacing
-        layout.scrollDirection = .vertical
-        collectionView.collectionViewLayout = layout
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 0
+        }
 
-
-
-        let numberOfRows = 3
-        let rowHeight: CGFloat = 40
-        let totalSpacing: CGFloat = layout.minimumLineSpacing * CGFloat(numberOfRows - 1) + layout.sectionInset.top + layout.sectionInset.bottom
-        let collectionViewHeight = CGFloat(numberOfRows) * rowHeight + totalSpacing
-        NSLayoutConstraint.activate([
-            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHeight)
-        ])
         
         // Calls FetchRandomPokemon and loads in a random Pokemon Image
         fetchRandomPokemon { result in
@@ -153,12 +140,12 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
     }
 
     
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         updateCollectionViewWithSuggestions(for: updatedString)
         return true
     }
+    
     
     func updateCollectionViewWithSuggestions(for input: String?) {
         guard let input = input, !input.isEmpty else {
@@ -186,17 +173,18 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         return 1
     }
     
-    // I made a cell class and this will be using that cell.
+    // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as! SuggestionCollectionViewCell
-        
         cell.suggestionLabel.text = suggestions[indexPath.row]
-        cell.layer.borderWidth = 1.0
-        cell.layer.borderColor = UIColor.black.cgColor
-        
+
+        // remove the border
+        cell.layer.borderWidth = 0.0
+        cell.backgroundColor = .white
+
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedSuggestion = suggestions[indexPath.row]
         guessTextField.text = selectedSuggestion

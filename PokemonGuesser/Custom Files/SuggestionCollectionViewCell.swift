@@ -2,34 +2,26 @@
 //  SuggestionCollectionViewCell.swift
 //  PokemonGuesser
 //
-//  Created by Andrew Pan on 5/3/23.
+//  Created by Andrew Pan on 5/12/23.
 //
 
 import UIKit
 
 class SuggestionCollectionViewCell: UICollectionViewCell {
     
-    var suggestionLabel: UILabel!
+    @IBOutlet weak var suggestionLabel: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupCell()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupCell()
-    }
-    
-    func setupCell() {
-        suggestionLabel = UILabel(frame: contentView.bounds)
-        contentView.addSubview(suggestionLabel)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
-        layer.borderWidth = 1
-        
-        let topLineView = UIView(frame: CGRect(x: 0, y: 0, width: contentView.bounds.width, height: 1))
-        topLineView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        contentView.addSubview(topLineView)
+        // Constraints
+        suggestionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            suggestionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            suggestionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            suggestionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            suggestionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
+    
 }
