@@ -74,7 +74,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         if let urlString = pokemonEntity.front_default, let url = URL(string: urlString) {
-            fetchImage(from: url) { image in
+            UIImage.fetchFrom(url: url) { image in
                 DispatchQueue.main.async {
                     cell.pokemonImageView.image = image
                 }
@@ -83,14 +83,5 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         return cell
     }
-
-    func fetchImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, let image = UIImage(data: data) else {
-            print("Error: \(error?.localizedDescription ?? "Unknown error")")
-            return
-        }
-            completion(image)
-        }.resume()
-    }
+    
 }

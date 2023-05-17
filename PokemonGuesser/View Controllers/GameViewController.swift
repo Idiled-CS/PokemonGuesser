@@ -218,6 +218,21 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
     }
 }
 
+// Native class Extension to fetch Images
+extension UIImage {
+    static func fetchFrom(url: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, let image = UIImage(data: data) else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+                return
+            }
+            completion(image)
+        }.resume()
+    }
+}
+
+
 extension GameViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         processGuess()

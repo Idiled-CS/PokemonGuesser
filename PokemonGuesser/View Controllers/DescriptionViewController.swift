@@ -70,8 +70,10 @@ class DescriptionViewController: UIViewController {
         pokemonTypeLabel.text = pokemonEntity.types?.components(separatedBy: ",").first?.capitalized ?? "Unknown"
 
         if let urlString = pokemonEntity.front_default, let url = URL(string: urlString) {
-            fetchImage(from: url) { [weak self] image in
-                self?.pokemonImageView.image = image
+            UIImage.fetchFrom(url: url) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.pokemonImageView.image = image
+                }
             }
         }
 
@@ -89,10 +91,13 @@ class DescriptionViewController: UIViewController {
         pokemonTypeLabel.text = pokemon.types.first?.type.name.capitalized ?? "Unknown"
 
         if let urlString = pokemon.sprites.front_default, let url = URL(string: urlString) {
-            fetchImage(from: url) { [weak self] image in
-                self?.pokemonImageView.image = image
+            UIImage.fetchFrom(url: url) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.pokemonImageView.image = image
+                }
             }
         }
+        
 
         if let speciesURLString = pokemon.species.url, let speciesURL = URL(string: speciesURLString) {
             fetchSpeciesData(from: speciesURL) { [weak self] species in
@@ -120,17 +125,6 @@ class DescriptionViewController: UIViewController {
         }.resume()
     }
     
-    func fetchImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-        guard let data = data, let image = UIImage(data: data) else {
-            print("Error: \(error?.localizedDescription ?? "Unknown error")")
-            return
-        }
-        DispatchQueue.main.async {
-            completion(image)
-        }
-        }.resume()
-    }
     
     // MARK: Favorite actions
     @objc func favoriteButtonTapped(_ sender: UITapGestureRecognizer) {
