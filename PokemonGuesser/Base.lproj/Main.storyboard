@@ -37,13 +37,9 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redPokeBall.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ie3-Ih-43g">
                                 <rect key="frame" x="50" y="525" width="293" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="YTB-CH-l5c"/>
-                                    <constraint firstAttribute="width" constant="300" id="wOY-R3-Lhu"/>
-                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2F-6b-yhp">
-                                <rect key="frame" x="154" y="366" width="85" height="35"/>
+                                <rect key="frame" x="154" y="436" width="85" height="35"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="RvP-Ux-BJO"/>
@@ -57,7 +53,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqy-7a-TrP">
-                                <rect key="frame" x="0.0" y="-70" width="393" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="140"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <constraints>
@@ -68,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-BI-gyK">
-                                <rect key="frame" x="20" y="70" width="353" height="150"/>
+                                <rect key="frame" x="20" y="140" width="353" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="eLA-3F-Lp7"/>
@@ -104,7 +100,7 @@
                                 </cells>
                             </collectionView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2IU-2l-gfl">
-                                <rect key="frame" x="20" y="230" width="353" height="128"/>
+                                <rect key="frame" x="20" y="300" width="353" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="dzB-Sn-fbp"/>
                                 </constraints>
@@ -121,24 +117,24 @@
                         <viewLayoutGuide key="safeArea" id="CLN-Yw-SdB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="Ie3-Ih-43g" secondAttribute="trailing" constant="50" id="00U-rR-azh"/>
                             <constraint firstItem="rqP-OJ-cCC" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="0MI-GG-aqx"/>
                             <constraint firstItem="2IU-2l-gfl" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="2G2-iD-885"/>
                             <constraint firstItem="Q2F-6b-yhp" firstAttribute="top" secondItem="2IU-2l-gfl" secondAttribute="bottom" constant="10" id="5a8-tf-Bzo"/>
-                            <constraint firstItem="Ie3-Ih-43g" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="50" id="85T-W6-gyz"/>
-                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="bottom" secondItem="Ie3-Ih-43g" secondAttribute="bottom" constant="44" id="CTn-Oc-v5u"/>
+                            <constraint firstItem="Ie3-Ih-43g" firstAttribute="top" secondItem="Q2F-6b-yhp" secondAttribute="bottom" constant="54" id="60q-Xv-vsX"/>
                             <constraint firstItem="sqy-7a-TrP" firstAttribute="leading" secondItem="zzd-zj-KSH" secondAttribute="leading" id="Giv-R8-UMh"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="2IU-2l-gfl" secondAttribute="trailing" constant="20" id="HNv-Bi-4AI"/>
                             <constraint firstItem="2IU-2l-gfl" firstAttribute="top" secondItem="wYz-BI-gyK" secondAttribute="bottom" constant="10" id="Iif-YK-kC2"/>
                             <constraint firstItem="wYz-BI-gyK" firstAttribute="top" secondItem="sqy-7a-TrP" secondAttribute="bottom" id="KIf-6X-oX0"/>
+                            <constraint firstItem="Ie3-Ih-43g" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="50" id="KfR-og-ATg"/>
                             <constraint firstAttribute="trailing" secondItem="sqy-7a-TrP" secondAttribute="trailing" id="LyU-nl-4ex"/>
+                            <constraint firstItem="CLN-Yw-SdB" firstAttribute="bottom" secondItem="Ie3-Ih-43g" secondAttribute="bottom" constant="44" id="M3I-VI-svE"/>
                             <constraint firstItem="Q2F-6b-yhp" firstAttribute="top" secondItem="2IU-2l-gfl" secondAttribute="bottom" constant="8" symbolic="YES" id="P9C-3L-YFv"/>
                             <constraint firstItem="sqy-7a-TrP" firstAttribute="top" secondItem="zzd-zj-KSH" secondAttribute="top" id="W6z-Tb-Phr"/>
                             <constraint firstItem="Q2F-6b-yhp" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="154" id="WTv-r2-mJl"/>
-                            <constraint firstItem="Ie3-Ih-43g" firstAttribute="top" secondItem="Q2F-6b-yhp" secondAttribute="bottom" constant="124" id="XBv-du-PRa"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="wYz-BI-gyK" secondAttribute="trailing" constant="20" id="YSw-xn-6ug"/>
                             <constraint firstItem="2IU-2l-gfl" firstAttribute="centerX" secondItem="Q2F-6b-yhp" secondAttribute="centerX" id="avW-T4-jRC"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="Q2F-6b-yhp" secondAttribute="trailing" constant="154" id="hCQ-xi-Jvp"/>
+                            <constraint firstItem="Ie3-Ih-43g" firstAttribute="centerX" secondItem="Q2F-6b-yhp" secondAttribute="centerX" id="lsY-cI-HcV"/>
                             <constraint firstItem="wYz-BI-gyK" firstAttribute="leading" secondItem="CLN-Yw-SdB" secondAttribute="leading" constant="20" id="n10-ZX-nEW"/>
                             <constraint firstItem="rqP-OJ-cCC" firstAttribute="top" secondItem="CLN-Yw-SdB" secondAttribute="top" constant="20" id="xej-mW-We7"/>
                             <constraint firstItem="CLN-Yw-SdB" firstAttribute="trailing" secondItem="rqP-OJ-cCC" secondAttribute="trailing" constant="20" id="zcA-V7-YSV"/>
@@ -328,7 +324,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ISM-r1-LCW"/>
+        <segue reference="ws9-P7-bbL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="redPokeBall.png" width="3633" height="3633"/>

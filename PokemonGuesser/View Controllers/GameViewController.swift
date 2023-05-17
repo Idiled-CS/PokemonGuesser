@@ -7,8 +7,17 @@
 
 import UIKit
 
-class GameViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+
+// Custom Protocol
+protocol PokeBallChangeDelegate: AnyObject {
+    func didChangePokeBall()
+}
+
+
+class GameViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PokeBallChangeDelegate {
+    func didChangePokeBall() {
+        startSpinningPokeball()
+    }
     
     // MARK: - Outlets
     @IBOutlet weak var guessTextField: UITextField!
@@ -39,7 +48,15 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumLineSpacing = 0
         }
+        
+        // Set the initial pokeball image
+        let pokeBallColor = UserDefaults.standard.string(forKey: "pokeBallColor") ?? "redPokeBall"
+        pokeballImageView.image = UIImage(named: pokeBallColor)
 
+        // Add tap gesture recognizer to the image view
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pokeBallTapped))
+        pokeballImageView.isUserInteractionEnabled = true
+        pokeballImageView.addGestureRecognizer(tapGestureRecognizer)
         
         // Calls FetchRandomPokemon and loads in a random Pokemon Image
         fetchRandomPokemon { result in
@@ -56,7 +73,25 @@ class GameViewController: UIViewController, UITextFieldDelegate, UICollectionVie
         
         startSpinningPokeball()
     }
+
     
+    @objc func pokeBallTapped() {
+        
+        
+        // Get the current pokeball color
+        var pokeBallColor = UserDefaults.standard.string(forKey: "pokeBallColor") ?? "redPokeBall"
+
+        // Swap the color
+        pokeBallColor = (pokeBallColor == "redPokeBall") ? "bluePokeBall" : "redPokeBall"
+
+        // Save the new color and update the image
+        UserDefaults.standard.setValue(pokeBallColor, forKey: "pokeBallColor")
+        pokeballImageView.image = UIImage(named: pokeBallColor)
+
+        // Call the delegate method
+        didChangePokeBall()
+    }
+        
     
     // Animation for spinning
     func startSpinningPokeball() {
